@@ -2,53 +2,48 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Urja Arts | Viewer</title>
+<title>PDF Viewer | Urja Arts</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-* {
+html, body {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-}
-
-body {
-  background: #000;
-  color: #fff;
+  height: 100%;
   overflow: hidden;
+  background: #eee;
 }
 
-/* HEADER */
 header {
-  height: 50px;
+  height: 60px;
   background: #1b5e20;
+  color: white;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 0 14px;
+  padding: 0 16px;
 }
 
-header button {
-  background: none;
-  border: none;
-  color: #fff;
-  font-size: 14px;
-  cursor: pointer;
+#viewer-container {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
-/* CANVAS */
-#viewer {
-  position: relative;
-  height: calc(100vh - 50px);
-  overflow: auto;
-  text-align: center;
+#pdf-viewer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
 }
 
 canvas {
+  margin-bottom: 20px;
   max-width: 100%;
-  margin: auto;
-  display: block;
+  height: auto !important;
 }
 
 /* WATERMARK */
@@ -56,34 +51,61 @@ canvas {
   position: fixed;
   inset: 0;
   pointer-events: none;
+  opacity: 0.08;
+  font-size: 60px;
+  color: green;
+  transform: rotate(-30deg);
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 48px;
-  font-weight: 700;
-  color: rgba(27,94,32,0.15);
-  transform: rotate(-30deg);
-  user-select: none;
 }
 </style>
 </head>
 
-<body oncontextmenu="return false">
+<body>
 
 <header>
-  <button onclick="history.back()">← Back</button>
-  <span>URJA ARTS</span>
-  <button id="fullscreenBtn">⛶</button>
+  <a href="catalogue.html" style="color:white;text-decoration:none">← Back</a>
 </header>
 
-<div id="viewer">
-  <canvas id="pdfCanvas"></canvas>
+<div id="viewer-container">
+  <div id="pdf-viewer"></div>
 </div>
 
-<div class="watermark">URJA ARTS</div>
+<div class="watermark">URJA ARTS URJA ARTS URJA ARTS</div>
 
-<!-- LOAD PDF.JS -->
-<script type="module" src="js/viewer.js"></script>
+<script type="module">
+import * as pdfjsLib from "./pdfjs/pdf.mjs";
+
+pdfjsLib.GlobalWorkerOptions.workerSrc = "./pdfjs/pdf.worker.mjs";
+
+const params = new URLSearchParams(window.location.search);
+const pdfUrl = params.get("file");
+
+const scale = Math.min(window.innerWidth / 800, 1.5);
+
+const loadingTask = pdfjsLib.getDocument(pdfUrl);
+loadingTask.promise.then(pdf => {
+  for (let i = 1; i <= pdf.numPages; i++) {
+    pdf.getPage(i).then(page => {
+      const viewport = page.getViewport({ scale });
+
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("2d");
+
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
+
+      document.getElementById("pdf-viewer").appendChild(canvas);
+
+      page.render({
+        canvasContext: ctx,
+        viewport
+      });
+    });
+  }
+});
+</script>
 
 </body>
 </html>
