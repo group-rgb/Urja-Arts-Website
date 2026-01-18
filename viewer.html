@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Urja Arts | Viewer</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+  background: #000;
+  color: #fff;
+  overflow: hidden;
+}
+
+/* HEADER */
+header {
+  height: 50px;
+  background: #1b5e20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 14px;
+}
+
+header button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* CANVAS */
+#viewer {
+  position: relative;
+  height: calc(100vh - 50px);
+  overflow: auto;
+  text-align: center;
+}
+
+canvas {
+  max-width: 100%;
+  margin: auto;
+  display: block;
+}
+
+/* WATERMARK */
+.watermark {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 48px;
+  font-weight: 700;
+  color: rgba(27,94,32,0.15);
+  transform: rotate(-30deg);
+  user-select: none;
+}
+</style>
+</head>
+
+<body oncontextmenu="return false">
+
+<header>
+  <button onclick="history.back()">← Back</button>
+  <span>URJA ARTS</span>
+  <button id="fullscreenBtn">⛶</button>
+</header>
+
+<div id="viewer">
+  <canvas id="pdfCanvas"></canvas>
+</div>
+
+<div class="watermark">URJA ARTS</div>
+
+<!-- LOAD PDF.JS -->
+<script type="module" src="js/viewer.js"></script>
+
+</body>
+</html>

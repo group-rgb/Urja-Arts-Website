@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Urja Arts | Digital PDF Library</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background: #f5f7f8;
+            color: #222;
+        }
+
+        /* HEADER */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 18px;
+            background: #1b5e20;
+            color: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .brand {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        /* HAMBURGER */
+        .menu-btn {
+            width: 28px;
+            cursor: pointer;
+        }
+
+        .menu-btn div {
+            height: 3px;
+            background: #fff;
+            margin: 5px 0;
+            border-radius: 2px;
+        }
+
+        /* MENU PANEL */
+        .menu {
+            position: fixed;
+            top: 60px;
+            right: 16px;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            display: none;
+            flex-direction: column;
+            width: 180px;
+            overflow: hidden;
+            z-index: 2000;
+        }
+
+        .menu a {
+            padding: 14px 16px;
+            text-decoration: none;
+            color: #1b5e20;
+            font-weight: 600;
+            border-bottom: 1px solid #eee;
+        }
+
+        .menu a:last-child {
+            border-bottom: none;
+        }
+
+        .menu a:hover {
+            background: #e8f5e9;
+        }
+
+        /* HERO */
+        .hero {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 28px;
+            margin-bottom: 12px;
+            color: #1b5e20;
+        }
+
+        .hero p {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .hero button {
+            background: #1b5e20;
+            color: #fff;
+            border: none;
+            padding: 14px 26px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+        }
+
+        .hero button:hover {
+            background: #2e7d32;
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 40px 20px;
+        }
+
+        section h2 {
+            text-align: center;
+            color: #1b5e20;
+            margin-bottom: 16px;
+        }
+
+        section p {
+            text-align: center;
+            color: #555;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            color: #777;
+            background: #eaeaea;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="brand">URJA ARTS</div>
+
+    <div class="menu-btn" onclick="toggleMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</header>
+
+<!-- MENU -->
+<nav class="menu" id="menu">
+    <a href="#">Home</a>
+    <a href="about.html">About</a>
+    <a href="catalogue.html">Catalogue</a>
+    <a href="contact.html">Contact</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+    <h1>Digital PDF Library</h1>
+    <p>Explore high-quality art catalogues, images and rate charts anytime, anywhere.</p>
+    <button onclick="location.href='catalogue.html'">View Catalogue</button>
+</div>
+
+<section>
+    <h2>Why Urja Arts?</h2>
+    <p>
+        A trusted digital platform for viewing art collections, religious images,
+        and professional rate charts with a clean and distraction-free experience.
+    </p>
+</section>
+
+<footer>
+    © 2026 Urja Arts. All Rights Reserved.
+</footer>
+
+<script>
+    function toggleMenu() {
+        const menu = document.getElementById('menu');
+        menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        const menu = document.getElementById('menu');
+        const btn = document.querySelector('.menu-btn');
+        if (!menu.contains(e.target) && !btn.contains(e.target)) {
+            menu.style.display = 'none';
+        }
+    });
+</script>
+
+</body>
+</html>

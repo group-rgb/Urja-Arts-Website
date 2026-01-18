@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Urja Arts | About Us</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+    background: #f4f6f8;
+    color: #222;
+}
+
+/* HEADER */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 18px;
+    background: #1b5e20;
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.brand {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+/* MENU BUTTON */
+.menu-btn {
+    width: 28px;
+    cursor: pointer;
+}
+
+.menu-btn div {
+    height: 3px;
+    background: #fff;
+    margin: 5px 0;
+    border-radius: 2px;
+}
+
+/* MENU PANEL */
+.menu {
+    position: fixed;
+    top: 60px;
+    right: 16px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    display: none;
+    flex-direction: column;
+    width: 180px;
+    z-index: 2000;
+}
+
+.menu a {
+    padding: 14px 16px;
+    text-decoration: none;
+    color: #1b5e20;
+    font-weight: 600;
+    border-bottom: 1px solid #eee;
+}
+
+.menu a:last-child {
+    border-bottom: none;
+}
+
+.menu a:hover {
+    background: #e8f5e9;
+}
+
+/* PAGE TITLE */
+.page-title {
+    padding: 32px 20px;
+    text-align: center;
+}
+
+.page-title h1 {
+    color: #1b5e20;
+    font-size: 28px;
+}
+
+.page-title p {
+    color: #555;
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+/* CONTENT */
+.content {
+    max-width: 1000px;
+    margin: auto;
+    padding: 0 20px 40px;
+}
+
+.section {
+    background: #ffffff;
+    padding: 26px;
+    margin-bottom: 24px;
+    border-radius: 16px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.section h2 {
+    color: #1b5e20;
+    margin-bottom: 14px;
+    font-size: 22px;
+}
+
+.section p {
+    line-height: 1.7;
+    color: #444;
+    font-size: 15.5px;
+}
+
+/* HIGHLIGHTS */
+.highlights {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-top: 18px;
+}
+
+.highlight {
+    background: #e8f5e9;
+    padding: 18px;
+    border-radius: 14px;
+}
+
+.highlight h3 {
+    margin-bottom: 6px;
+    color: #1b5e20;
+    font-size: 17px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+    color: #777;
+    background: #eaeaea;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="brand">URJA ARTS</div>
+    <div class="menu-btn" onclick="toggleMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</header>
+
+<nav class="menu" id="menu">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="catalogue.html">Catalogue</a>
+    <a href="contact.html">Contact</a>
+</nav>
+
+<div class="page-title">
+    <h1>About Urja Arts</h1>
+    <p>Creativity • Tradition • Quality</p>
+</div>
+
+<div class="content">
+
+    <div class="section">
+        <h2>Who We Are</h2>
+        <p>
+            Urja Arts is a creative and artistic brand dedicated to preserving tradition
+            while embracing modern digital solutions. We specialize in artistic visuals,
+            religious collections, and curated digital catalogues designed for easy access
+            and professional presentation.
+        </p>
+    </div>
+
+    <div class="section">
+        <h2>What We Do</h2>
+        <p>
+            We provide a digital platform where customers can explore categorized artistic
+            content, including high-quality image collections and structured PDF catalogues.
+            Our focus is simplicity, accessibility, and mobile-friendly design.
+        </p>
+
+        <div class="highlights">
+            <div class="highlight">
+                <h3>📚 Digital Catalogues</h3>
+                Organized and easy-to-use PDF collections
+            </div>
+            <div class="highlight">
+                <h3>📱 Mobile First</h3>
+                Optimized for smartphones and tablets
+            </div>
+            <div class="highlight">
+                <h3>🎨 Artistic Quality</h3>
+                Carefully curated visual content
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Why Choose Urja Arts</h2>
+        <p>
+            Our platform is designed for smooth performance across all devices.
+            We ensure a distraction-free viewing experience with branding protection,
+            clean design, and continuous improvement to meet user needs.
+        </p>
+    </div>
+
+</div>
+
+<footer>
+    © 2026 Urja Arts. All Rights Reserved.
+</footer>
+
+<script>
+function toggleMenu() {
+    const menu = document.getElementById('menu');
+    menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+}
+
+document.addEventListener('click', (e) => {
+    const menu = document.getElementById('menu');
+    const btn = document.querySelector('.menu-btn');
+    if (!menu.contains(e.target) && !btn.contains(e.target)) {
+        menu.style.display = 'none';
+    }
+});
+</script>
+
+</body>
+</html>
